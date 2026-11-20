@@ -3,309 +3,965 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debatný klub Univerzity Komenského</title>
-    <!-- Tailwind CSS -->
+    <title>Debatný klub Univerzity Komenského | DK UK</title>
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter for modern, clean typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'uni-red': '#7f1d1d', /* Tailwind red-900, academic dark red */
-                        'uni-dark': '#1e293b',
+                        crimson: {
+                            50: '#FDF2F3',
+                            100: '#FBE6E7',
+                            200: '#F7C0C3',
+                            300: '#EF9096',
+                            400: '#E25B65',
+                            500: '#C72C36',
+                            600: '#A31C24', // Primary logo color
+                            700: '#7D141B', // Darker shade
+                            800: '#641217',
+                            900: '#480B0F',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="bg-gray-50 text-gray-800 antialiased selection:bg-uni-red selection:text-white">
 
-    <!-- Header & Navigation -->
-    <header class="fixed w-full bg-white shadow-sm z-50 top-0">
+    <style>
+        .gradient-crimson {
+            background: linear-gradient(135deg, #7D141B 0%, #A31C24 50%, #B9242D 100%);
+        }
+        .text-glow {
+            text-shadow: 0 2px 10px rgba(163, 28, 36, 0.3);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(163, 28, 36, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-crimson-600 selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- NAVIGATION (Sticky Header)                 -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <!-- Logo Placeholder / Text -->
-                    <a href="#" class="text-2xl font-bold text-uni-red tracking-tight flex items-center gap-2">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-                        DKUK
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 shadow-sm rounded-full overflow-hidden transition-transform group-hover:scale-105 duration-300">
+                        <!-- SVG Logo DK UK (Matching User's Logo) -->
+                        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="100" fill="#A31C24"/>
+                            <circle cx="100" cy="100" r="87" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                            <circle cx="100" cy="100" r="79" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                            <text x="100" y="85" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle" dominant-baseline="central" letter-spacing="2">DK</text>
+                            <text x="100" y="137" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle" dominant-baseline="central" letter-spacing="2">UK</text>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-lg leading-tight text-slate-900 group-hover:text-crimson-600 transition-colors">Debatný klub</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-crimson-600">Univerzity Komenského</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#o-nas" class="text-sm font-semibold text-slate-600 hover:text-crimson-600 transition-colors">O nás</a>
+                    <a href="#format" class="text-sm font-semibold text-slate-600 hover:text-crimson-600 transition-colors">Formát debaty</a>
+                    <a href="#stretnutia" class="text-sm font-semibold text-slate-600 hover:text-crimson-600 transition-colors">Stretnutia & Predmet</a>
+                    <a href="#galeria" class="text-sm font-semibold text-slate-600 hover:text-crimson-600 transition-colors">Galéria</a>
+                    <a href="#zakladatelia" class="text-sm font-semibold text-slate-600 hover:text-crimson-600 transition-colors">Zakladatelia</a>
+                    <a href="#kontakt" class="text-sm font-semibold text-slate-600 hover:text-crimson-600 transition-colors">Kontakt</a>
+                </nav>
+
+                <!-- Desktop Quick Action -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="#stretnutia" class="bg-crimson-600 hover:bg-crimson-700 text-white font-semibold px-5 py-2.5 rounded-full text-sm shadow-md hover:shadow-lg transition-all duration-300 transform active:scale-95 flex items-center gap-2">
+                        <span>Pridaj sa k nám</span>
+                        <i class="fa-solid font-xs fa-arrow-right"></i>
                     </a>
                 </div>
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#o-nas" class="text-gray-600 hover:text-uni-red font-medium transition-colors">O nás</a>
-                    <a href="#podujatia" class="text-gray-600 hover:text-uni-red font-medium transition-colors">Podujatia</a>
-                    <a href="#clenstvo" class="text-gray-600 hover:text-uni-red font-medium transition-colors">Členstvo</a>
-                    <a href="#kontakt" class="text-gray-600 hover:text-uni-red font-medium transition-colors">Kontakt</a>
-                </nav>
-                <!-- Mobile Menu Button (visual only for static) -->
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-600 hover:text-uni-red focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-700 hover:text-crimson-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-crimson-600" aria-label="Menu">
+                        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-uni-red overflow-hidden">
-        <div class="absolute inset-0">
-            <!-- Decorative gradient overlay -->
-            <div class="absolute inset-0 bg-gradient-to-r from-uni-red to-red-800 opacity-90"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
-                Sila slova. <br class="md:hidden">Kultúra dialógu.
-            </h1>
-            <p class="mt-4 text-xl md:text-2xl text-red-100 max-w-3xl font-light mb-10">
-                Sme Debatný klub Univerzity Komenského. Rozvíjame kritické myslenie, argumentačné zručnosti a sebaistotu vo verejnom prejave.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="#clenstvo" class="inline-flex justify-center items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-uni-red bg-white hover:bg-gray-100 transition-colors shadow-lg">
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#o-nas" class="mobile-link block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-crimson-50 hover:text-crimson-600">O nás</a>
+            <a href="#format" class="mobile-link block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-crimson-50 hover:text-crimson-600">Formát debaty</a>
+            <a href="#stretnutia" class="mobile-link block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-crimson-50 hover:text-crimson-600">Stretnutia & Predmet</a>
+            <a href="#galeria" class="mobile-link block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-crimson-50 hover:text-crimson-600">Galéria</a>
+            <a href="#zakladatelia" class="mobile-link block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-crimson-50 hover:text-crimson-600">Zakladatelia</a>
+            <a href="#kontakt" class="mobile-link block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-crimson-50 hover:text-crimson-600">Kontakt</a>
+            <div class="pt-2">
+                <a href="#stretnutia" class="mobile-link block w-full text-center bg-crimson-600 text-white font-semibold py-3 rounded-xl shadow">
                     Pridaj sa k nám
                 </a>
-                <a href="#o-nas" class="inline-flex justify-center items-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white hover:bg-opacity-10 transition-colors">
-                    Zisti viac
-                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION                               -->
+    <!-- ========================================== -->
+    <section class="relative gradient-crimson text-white py-20 lg:py-28 overflow-hidden">
+        <!-- Background Decorative Elements -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full border-8 border-white"></div>
+            <div class="absolute bottom-10 left-10 w-72 h-72 rounded-full border-4 border-white"></div>
+            <div class="absolute top-1/2 left-1/3 w-40 h-40 rounded-full border-2 border-white"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold border border-white/20">
+                        <i class="fa-solid fa-graduation-cap text-amber-300"></i>
+                        <span>Univerzita Komenského v Bratislave</span>
+                    </div>
+
+                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Debatný klub <br class="hidden sm:inline"/>
+                        <span class="text-amber-200">Univerzity Komenského</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg lg:text-xl text-rose-100 max-w-2xl font-light leading-relaxed">
+                        Vysokoškolský debatný klub otvorený pre každého. Rozvíjaj kritické myslenie, rétoriku a umenie argumentácie v britskej parlamentnej debate.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#stretnutia" class="w-full sm:w-auto bg-white text-crimson-700 hover:bg-slate-100 font-bold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group">
+                            <i class="fa-solid fa-calendar-days text-crimson-600"></i>
+                            <span>Kedy sa stretávame</span>
+                            <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/debaty_uk" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-crimson-800/60 hover:bg-crimson-800 text-white font-semibold px-7 py-3.5 rounded-full border border-white/30 backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-instagram text-lg text-rose-300"></i>
+                            <span>Sleduj @debaty_uk</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Info Badges -->
+                    <div class="pt-8 border-t border-white/20 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="text-xl sm:text-2xl font-extrabold text-amber-300">Pondelky</div>
+                            <div class="text-xs text-rose-100 font-medium">Stretnutia o 18:15</div>
+                        </div>
+                        <div>
+                            <div class="text-xl sm:text-2xl font-extrabold text-amber-300">2 Kredity</div>
+                            <div class="text-xs text-rose-100 font-medium">Predmet v AISe za účasť</div>
+                        </div>
+                        <div>
+                            <div class="text-xl sm:text-2xl font-extrabold text-amber-300">100% Voľný</div>
+                            <div class="text-xs text-rose-100 font-medium">Vstup pre všetkých</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Graphic / SVG Logo Badge -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group">
+                        <!-- Glow effect -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-amber-300 to-rose-300 rounded-full blur-xl opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200"></div>
+                        
+                        <!-- Main Badge Container -->
+                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 bg-crimson-700 p-4 rounded-full border-4 border-white/30 shadow-2xl flex items-center justify-center">
+                            <svg viewBox="0 0 200 200" class="w-full h-full transform transition-transform duration-500 group-hover:scale-105" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="100" r="98" fill="#A31C24"/>
+                                <circle cx="100" cy="100" r="86" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                                <circle cx="100" cy="100" r="78" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                                <text x="100" y="85" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle" dominant-baseline="central" letter-spacing="2">DK</text>
+                                <text x="100" y="137" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle" dominant-baseline="central" letter-spacing="2">UK</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- O nás (About Us) -->
+    <!-- ========================================== -->
+    <!-- SECTION: ABOUT US & BENEFITS              -->
+    <!-- ========================================== -->
     <section id="o-nas" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Kto sme a čo robíme?</h2>
-                <div class="mt-2 w-24 h-1 bg-uni-red mx-auto rounded"></div>
-            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Card 1 -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-100 text-uni-red rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Kritické myslenie</h3>
-                    <p class="text-gray-600">Učíme sa analyzovať komplexné problémy, vyhľadávať relevantné informácie a logicky štruktúrovať argumenty v reálnom čase.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-100 text-uni-red rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Verejný prejav</h3>
-                    <p class="text-gray-600">Pomáhame prekonávať strach z vystupovania pred publikom. Trénujeme rétoriku, reč tela a schopnosť zaujať poslucháčov.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-red-100 text-uni-red rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Komunita</h3>
-                    <p class="text-gray-600">Sme partia ambicióznych študentov z rôznych fakúlt. Spoločne cestujeme na turnaje, organizujeme akcie a tvoríme priateľstvá.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Podujatia (Events) -->
-    <section id="podujatia" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Najbližšie podujatia</h2>
-                    <div class="mt-2 w-24 h-1 bg-uni-red rounded"></div>
-                </div>
-                <a href="#" class="mt-4 md:mt-0 text-uni-red font-semibold hover:underline flex items-center gap-1">
-                    Všetky podujatia 
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </a>
-            </div>
-
-            <div class="space-y-6">
-                <!-- Event 1 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow">
-                    <div class="bg-uni-red text-white p-6 md:w-48 flex flex-col justify-center items-center shrink-0">
-                        <span class="text-sm font-semibold uppercase tracking-wider">November</span>
-                        <span class="text-4xl font-bold">14</span>
-                        <span class="text-sm mt-1">2026 | Utorok</span>
-                    </div>
-                    <div class="p-6 md:p-8 flex-1">
-                        <div class="uppercase tracking-wide text-sm text-uni-red font-semibold mb-1">Tréning</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Úvod do parlamentnej debaty</h3>
-                        <p class="text-gray-600 mb-4">Prvý tohtoročný otvorený tréning pre nováčikov. Dozviete sa základy formátu Britskej parlamentnej debaty (BP) a vyskúšate si svoj prvý prejav nanečisto.</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            18:00 - 20:00
-                            <span class="mx-2">|</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            Právnická fakulta UK, Šafárikovo nám. 6, Miestnosť 114
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Event 2 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow">
-                    <div class="bg-uni-dark text-white p-6 md:w-48 flex flex-col justify-center items-center shrink-0">
-                        <span class="text-sm font-semibold uppercase tracking-wider">November</span>
-                        <span class="text-4xl font-bold">28</span>
-                        <span class="text-sm mt-1">2026 | Utorok</span>
-                    </div>
-                    <div class="p-6 md:p-8 flex-1">
-                        <div class="uppercase tracking-wide text-sm text-uni-dark font-semibold mb-1">Verejná debata</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Mala by sa AI zakázať pri písaní záverečných prác?</h3>
-                        <p class="text-gray-600 mb-4">Exhibičná verejná debata našich najskúsenejších rečníkov proti študentskému parlamentu. Príďte si vypočuť argumenty za a proti využívaniu generatívnej AI v akademickom prostredí.</p>
-                        <div class="flex items-center text-sm text-gray-500">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            17:30 - 19:30
-                            <span class="mx-2">|</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            Amfiteáter, Fakulta managementu UK
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Členstvo (Membership) -->
-    <section id="clenstvo" class="py-20 bg-uni-red text-white relative overflow-hidden">
-        <!-- Abstract shape -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 opacity-10">
-            <svg width="400" height="400" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="currentColor"/></svg>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="lg:flex lg:items-center lg:justify-between">
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl font-bold sm:text-4xl mb-4">Staň sa členom nášho klubu</h2>
-                    <p class="text-red-100 text-lg mb-8 max-w-xl">
-                        Nezáleží na tom, čo študuješ, alebo či už máš skúsenosti s debatou. Dôležitá je chuť učiť sa a spoznávať nové veci. 
-                        Členstvo v klube je <strong>bezplatné</strong> a otvorené pre všetkých študentov vysokých škôl.
-                    </p>
-                    
-                    <ul class="space-y-4 mb-8 text-red-50">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 mr-3 text-red-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Pravidelné tréningy každý utorok večer
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 mr-3 text-red-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Možnosť reprezentovať univerzitu na medzinárodných turnajoch
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 mr-3 text-red-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Workshopy s odborníkmi z praxe
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="lg:w-5/12 mt-10 lg:mt-0 bg-white rounded-xl shadow-xl p-8 text-gray-900">
-                    <h3 class="text-2xl font-bold mb-6 text-center">Prihlasovací formulár</h3>
-                    <form action="#" method="POST" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Meno a priezvisko</label>
-                            <input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-uni-red focus:ring-uni-red sm:text-sm p-3 border" placeholder="Jozef Mak" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Univerzitný alebo osobný email</label>
-                            <input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-uni-red focus:ring-uni-red sm:text-sm p-3 border" placeholder="jozef@uniba.sk" required>
-                        </div>
-                        <div>
-                            <label for="faculty" class="block text-sm font-medium text-gray-700">Fakulta</label>
-                            <select id="faculty" name="faculty" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-uni-red focus:ring-uni-red sm:text-sm p-3 border">
-                                <option>Právnická fakulta</option>
-                                <option>Filozofická fakulta</option>
-                                <option>Fakulta managementu</option>
-                                <option>Fakulta sociálnych a ekonomických vied</option>
-                                <option>Fakulta matematiky, fyziky a informatiky</option>
-                                <option>Iná...</option>
-                            </select>
-                        </div>
-                        <div class="pt-2">
-                            <button type="button" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-uni-red hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-uni-red transition-colors">
-                                Chcem sa pridať
-                            </button>
-                            <p class="text-xs text-gray-500 mt-3 text-center">Tlačidlo slúži ako ukážka pre statický web.</p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer / Kontakt -->
-    <footer id="kontakt" class="bg-uni-dark pt-16 pb-8 text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <!-- Branding -->
-                <div>
-                    <a href="#" class="text-2xl font-bold text-white tracking-tight flex items-center gap-2 mb-4">
-                        <svg class="w-8 h-8 text-uni-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-                        DKUK
-                    </a>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Debatný klub Univerzity Komenského je študentská organizácia zameraná na rozvoj akademickej debaty, kritického myslenia a spoločenskej diskusie.
-                    </p>
-                </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Rýchle odkazy</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#o-nas" class="hover:text-white transition-colors">O nás</a></li>
-                        <li><a href="#podujatia" class="hover:text-white transition-colors">Podujatia</a></li>
-                        <li><a href="#clenstvo" class="hover:text-white transition-colors">Ako sa stať členom</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pravidlá BP debaty</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Kontaktujte nás</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <span>Šafárikovo nám. 6, 810 00 Bratislava<br>(Zasadáme zvyčajne na PraF UK)</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <a href="mailto:info@debatnyklubuk.sk" class="hover:text-white transition-colors">info@debatnyklubuk.sk</a>
-                        </li>
-                        <li class="flex items-center mt-4 space-x-4">
-                            <!-- Social Icons -->
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <span class="sr-only">Facebook</span>
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                <span class="sr-only">Instagram</span>
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-sm text-gray-400">
-                    &copy; 2026 Debatný klub Univerzity Komenského. Všetky práva vyhradené.
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-crimson-600 font-bold text-sm tracking-wider uppercase bg-crimson-50 px-3.5 py-1 rounded-full border border-crimson-100">O našom klube</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-3 mb-4">Miesto, kde argumenty majú váhu</h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    Sme oficiálny vysokoškolský debatný klub pôsobiaci na Univerzite Komenského v Bratislave. Vytvárame otvorený priestor pre všetkých, ktorí si chcú vyskúšať obhajovať vlastné aj pridelené názory, reagovať na nečakané argumenty a zlepšiť svoj prejav.
                 </p>
-                <p class="text-sm text-gray-500 mt-2 md:mt-0">
-                    Vytvorené pre akademickú a neziskovú činnosť.
+            </div>
+
+            <!-- 4 Key Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Pillar 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 card-hover flex flex-col items-start">
+                    <div class="w-14 h-14 rounded-xl bg-crimson-100 text-crimson-600 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Kritické myslenie</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Naučíš sa analyzovať komplexné spoločenské, etické či ekonomické témy bez predsudkov a vyhľadávať logické chyby.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 card-hover flex flex-col items-start">
+                    <div class="w-14 h-14 rounded-xl bg-crimson-100 text-crimson-600 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Rétorika & Prejav</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Prekonaj trému z verejného vystupovania. Naučíme ťa hovoriť s istotou, zrozumiteľne a presvedčivo aj pod časovým tlakom.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 card-hover flex flex-col items-start">
+                    <div class="w-14 h-14 rounded-xl bg-crimson-100 text-crimson-600 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-door-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Otvorený pre každého</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Nezáleží na tom, či študuješ právo, matfyz, filozofiu alebo lekársku fakultu. U nás je vítaný každý študent aj neštudent.
+                    </p>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 card-hover flex flex-col items-start">
+                    <div class="w-14 h-14 rounded-xl bg-crimson-100 text-crimson-600 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-users font-bold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Skvelá komunita</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Sme skupina zvedavých ľudí, ktorí sa po debate radi stretnú pri neformálnom rozhovore. Získaš nových priateľov na celej univerzite.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: DEBATE FORMAT (BRITISH PARLIAMENTARY) -->
+    <!-- ========================================== -->
+    <section id="format" class="py-20 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-amber-400 font-bold text-sm tracking-wider uppercase bg-white/10 px-3.5 py-1 rounded-full border border-white/15">Akademický formát</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-3 mb-4">Britská parlamentná debata (BP)</h2>
+                <p class="text-slate-300 text-base sm:text-lg">
+                    Debatujeme vo svetoznámom formáte, ktorý sa používa na Majstrovstvách Európy aj sveta. V jednej debate proti sebe stoja 4 tímy po 2 rečníkoch.
+                </p>
+            </div>
+
+            <!-- Quick Rule Highlights -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <div class="bg-slate-800/80 p-6 rounded-xl border border-slate-700 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-crimson-600/30 text-crimson-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-base">15 minút na prípravu</h4>
+                        <p class="text-slate-400 text-xs mt-1">Tému a pozíciu sa dozvieš tesne pred debatou bez internetu.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/80 p-6 rounded-xl border border-slate-700 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-crimson-600/30 text-crimson-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-microphone font-bold"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-base">7 minútové reči</h4>
+                        <p class="text-slate-400 text-xs mt-1">Každý debatér predstaví svoje argumenty v časovom limite.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/80 p-6 rounded-xl border border-slate-700 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-crimson-600/30 text-crimson-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-hand-raising"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-base">Medzipoznámky (POI)</h4>
+                        <p class="text-slate-400 text-xs mt-1">Opozičný tím môže počas reči položiť krátku otázku či námietku.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive 4-Team Chamber Schema -->
+            <div class="bg-slate-800 rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-2xl">
+                <h3 class="text-center font-bold text-lg text-slate-200 mb-6 uppercase tracking-wider">Rozloženie debatnej miestnosti (4 Tímy)</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Vláda Column -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 pb-2 border-b border-emerald-500/30 text-emerald-400 font-bold">
+                            <i class="fa-solid fa-landmark"></i>
+                            <span>VLÁDA (Obhajuje tézu)</span>
+                        </div>
+
+                        <!-- OG -->
+                        <div class="bg-slate-900/90 p-5 rounded-xl border-l-4 border-emerald-500 hover:bg-slate-900 transition-colors">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded">1. Otvárajúca Vláda (OG)</span>
+                                <span class="text-xs text-slate-400">2 rečníci</span>
+                            </div>
+                            <h4 class="font-bold text-white">Premiér/ka & Vicepremiér/ka</h4>
+                            <p class="text-slate-400 text-xs mt-1">Definujú tému, predstavujú hlavné argumenty v prospech návrhu a stavajú základy vlády.</p>
+                        </div>
+
+                        <!-- CG -->
+                        <div class="bg-slate-900/90 p-5 rounded-xl border-l-4 border-emerald-600 hover:bg-slate-900 transition-colors">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded">3. Uzatvárajúca Vláda (CG)</span>
+                                <span class="text-xs text-slate-400">2 rečníci</span>
+                            </div>
+                            <h4 class="font-bold text-white">Člen/ka Vlády & Government Whip</h4>
+                            <p class="text-slate-400 text-xs mt-1">Prinášajú nové rozšírenie (extension), prehĺbenie analýzy a sumarizujú debatu pre vládnu stranu.</p>
+                        </div>
+                    </div>
+
+                    <!-- Opozícia Column -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 pb-2 border-b border-rose-500/30 text-rose-400 font-bold">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>OPOZÍCIA (Oponuje téze)</span>
+                        </div>
+
+                        <!-- OO -->
+                        <div class="bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-500 hover:bg-slate-900 transition-colors">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-rose-400 bg-rose-950/80 px-2.5 py-0.5 rounded">2. Otvárajúca Opozícia (OO)</span>
+                                <span class="text-xs text-slate-400">2 rečníci</span>
+                            </div>
+                            <h4 class="font-bold text-white">Líder/ka Opozície & Vicelíder/ka</h4>
+                            <p class="text-slate-400 text-xs mt-1">Reagujú na otváraciu vládu, spochybňujú ich návrh a predkladajú vlastné opozičné argumenty.</p>
+                        </div>
+
+                        <!-- CO -->
+                        <div class="bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-600 hover:bg-slate-900 transition-colors">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-rose-400 bg-rose-950/80 px-2.5 py-0.5 rounded">4. Uzatvárajúca Opozícia (CO)</span>
+                                <span class="text-xs text-slate-400">2 rečníci</span>
+                            </div>
+                            <h4 class="font-bold text-white">Člen/ka Opozície & Opposition Whip</h4>
+                            <p class="text-slate-400 text-xs mt-1">Pridávajú nové opozičné argumenty a záverečný Whip syntetizuje celú debatu v neprospech návrhu.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: MEETINGS & UNIVERSITY CREDIT SUBJECT -->
+    <!-- ========================================== -->
+    <section id="stretnutia" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-crimson-600 font-bold text-sm tracking-wider uppercase bg-crimson-50 px-3.5 py-1 rounded-full border border-crimson-100">Kedy a kde</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-3 mb-4">Stretnutia & Predmet za kredity</h2>
+                <p class="text-slate-600 text-lg">
+                    Pridaj sa k nám na pravidelné stretnutie alebo si zapíš náš vysokoškolský predmet priamo v AISe.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Card 1: Regular Meetings -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm card-hover flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-crimson-600 text-white text-xs font-bold uppercase px-4 py-1.5 rounded-bl-2xl">
+                        Každý pondelok
+                    </div>
+
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-crimson-50 text-crimson-600 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <h3 class="font-serif text-2xl font-bold text-slate-900 mb-3">Pravidelné debatné stretnutia</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Stretávame sa len v pondelok. Program pozostáva z krátkeho workshopu alebo rozboru témy a následnej praktickej debaty vo formáte BP.
+                        </p>
+
+                        <div class="space-y-4 border-t border-slate-100 pt-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-slate-100 text-crimson-600 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Čas stretnutia</h4>
+                                    <p class="font-bold text-slate-800 text-base">Každý pondelok o 18:15</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-slate-100 text-crimson-600 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Miestnosť & Fakulta</h4>
+                                    <p class="font-bold text-slate-800 text-base">Miestnosť Iuridicum</p>
+                                    <p class="text-slate-600 text-sm">Právnická fakulta UK, Šafárikovo nám. 6, Bratislava</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-slate-100 text-crimson-600 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-ticket"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Podmienky vstupu</h4>
+                                    <p class="font-bold text-emerald-600 text-base">Bezplatný vstup • Otvorené pre každého</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-100">
+                        <a href="#kontakt" class="inline-flex items-center justify-center gap-2 w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 rounded-xl transition-colors">
+                            <span>Chcem prísť na najbližšiu debatu</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: AIS Subject for Credits -->
+                <div class="bg-gradient-to-br from-crimson-900 via-crimson-800 to-crimson-700 text-white rounded-3xl p-8 sm:p-10 shadow-xl card-hover flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-amber-400 text-crimson-950 text-xs font-extrabold uppercase px-4 py-1.5 rounded-bl-2xl">
+                        Pre študentov UK
+                    </div>
+
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-white/10 text-amber-300 flex items-center justify-center text-2xl mb-6 backdrop-blur-md border border-white/10">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+
+                        <h3 class="font-serif text-2xl font-bold text-white mb-3">Predmet za 2 kredity v AISe</h3>
+                        <p class="text-rose-100 text-sm leading-relaxed mb-6">
+                            Si študentom Univerzity Komenského? Spoj príjemné s užitočným! Môžeš si zapísať náš akreditovaný výberový predmet a získať kredity k štúdiu.
+                        </p>
+
+                        <div class="space-y-4 border-t border-white/10 pt-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-white/10 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-book-bookmark"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-rose-200 uppercase tracking-wider">Názov predmetu v AISe</h4>
+                                    <p class="font-bold text-white text-base">Akademická debata a argumentácia</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-white/10 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-rose-200 uppercase tracking-wider">Kreditové ohodnotenie</h4>
+                                    <p class="font-bold text-amber-300 text-lg">2 Kredity (Výberový predmet)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-white/10 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-rose-200 uppercase tracking-wider">Pre kogo je určený</h4>
+                                    <p class="text-rose-100 text-sm">Študenti všetkých fakúlt UK (Pravo, FiF, FMFI, Lekárska, PdF...)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10">
+                        <a href="https://ais2.uniba.sk" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-amber-400 hover:bg-amber-300 text-crimson-950 font-bold py-3 rounded-xl shadow-md transition-colors">
+                            <span>Zapísať predmet cez AIS2</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: GALLERY & SOCIAL MEDIA            -->
+    <!-- ========================================== -->
+    <section id="galeria" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-crimson-600 font-bold text-sm tracking-wider uppercase bg-crimson-50 px-3.5 py-1 rounded-full border border-crimson-100">Život v klube</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-3">Fotogaléria & Komunita</h2>
+                </div>
+                
+                <div class="mt-4 md:mt-0 flex gap-3">
+                    <a href="https://www.instagram.com/debaty_uk" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-4 py-2 rounded-xl text-sm transition-colors">
+                        <i class="fa-brands fa-instagram text-crimson-600 text-base"></i>
+                        <span>@debaty_uk</span>
+                    </a>
+                    <a href="https://www.facebook.com/debaty.uk" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-4 py-2 rounded-xl text-sm transition-colors">
+                        <i class="fa-brands fa-facebook text-blue-600 text-base"></i>
+                        <span>Debatný klub UK</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Photo Card 1 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer bg-slate-100" onclick="openLightbox('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200', 'Týždenné debatné stretnutie v miestnosti Iuridicum')">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600" alt="Debatné stretnutie v Iuridicu" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <span class="text-xs font-semibold text-amber-300 uppercase tracking-wider">Iuridicum</span>
+                        <h4 class="font-bold text-lg leading-snug">Týždenná debata v Iuridicu</h4>
+                        <p class="text-xs text-slate-300 mt-1"><i class="fa-regular fa-eye mr-1"></i> Klikni pre zväčšenie</p>
+                    </div>
+                </div>
+
+                <!-- Photo Card 2 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer bg-slate-100" onclick="openLightbox('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1200', 'Turnaje a výmeny názorov s ostatnými klubmi')">
+                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=600" alt="Debatný turnaj a rečník" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <span class="text-xs font-semibold text-amber-300 uppercase tracking-wider">Súťaže</span>
+                        <h4 class="font-bold text-lg leading-snug">Debatné turnaje & workshopy</h4>
+                        <p class="text-xs text-slate-300 mt-1"><i class="fa-regular fa-eye mr-1"></i> Klikni pre zväčšenie</p>
+                    </div>
+                </div>
+
+                <!-- Photo Card 3 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer bg-slate-100" onclick="openLightbox('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200', 'Po-debatné posedenia a budovanie priateľstiev')">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=600" alt="Študenti a komunita" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <span class="text-xs font-semibold text-amber-300 uppercase tracking-wider">Komunita</span>
+                        <h4 class="font-bold text-lg leading-snug">Po-debatné posedenia</h4>
+                        <p class="text-xs text-slate-300 mt-1"><i class="fa-regular fa-eye mr-1"></i> Klikni pre zväčšenie</p>
+                    </div>
+                </div>
+
+                <!-- Photo Card 4 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer bg-slate-100" onclick="openLightbox('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200', 'Tréningy argumentácie a verejného vystupovania')">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600" alt="Akademické prostredie a tréningy" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <span class="text-xs font-semibold text-amber-300 uppercase tracking-wider">Tréningy</span>
+                        <h4 class="font-bold text-lg leading-snug">Rétorické cvičenia</h4>
+                        <p class="text-xs text-slate-300 mt-1"><i class="fa-regular fa-eye mr-1"></i> Klikni pre zväčšenie</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-rose-400 focus:outline-none">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-4xl max-h-[90vh] flex flex-col items-center">
+            <img id="lightbox-img" src="" alt="Zväčšený obrázok" class="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl">
+            <p id="lightbox-caption" class="text-white text-center mt-4 text-lg font-medium"></p>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION: FOUNDERS                           -->
+    <!-- ========================================== -->
+    <section id="zakladatelia" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-crimson-600 font-bold text-sm tracking-wider uppercase bg-crimson-50 px-3.5 py-1 rounded-full border border-crimson-100">Kto stojí za klubom</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-3 mb-4">Zakladatelia DK UK</h2>
+                <p class="text-slate-600 text-lg">
+                    Debatný klub Univerzity Komenského založila štvorica zanietených študentov s cieľom priniesť akademickú debatu na pôdu UK.
+                </p>
+            </div>
+
+            <!-- Founders 4 Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Founder 1 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center card-hover flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-crimson-700 to-crimson-500 text-white flex items-center justify-center font-bold text-2xl shadow-md mb-4 border-2 border-white ring-4 ring-crimson-50">
+                        DŠ
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-1">Dávid Štrbka</h3>
+                    <span class="text-xs font-semibold text-crimson-600 bg-crimson-50 px-3 py-1 rounded-full border border-crimson-100 mb-3">Zakladateľ DK UK</span>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Iniciátor vzniku klubu a aktívny propagátor britského parlamentného formátu na univerzite.
+                    </p>
+                </div>
+
+                <!-- Founder 2 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center card-hover flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-crimson-700 to-crimson-500 text-white flex items-center justify-center font-bold text-2xl shadow-md mb-4 border-2 border-white ring-4 ring-crimson-50">
+                        DV
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-1">Daniel Valko</h3>
+                    <span class="text-xs font-semibold text-crimson-600 bg-crimson-50 px-3 py-1 rounded-full border border-crimson-100 mb-3">Zakladateľ DK UK</span>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Spoluzakladateľ klubu zodpovedný za rozvoj debatných metodík a akademickú prípravu.
+                    </p>
+                </div>
+
+                <!-- Founder 3 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center card-hover flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-crimson-700 to-crimson-500 text-white flex items-center justify-center font-bold text-2xl shadow-md mb-4 border-2 border-white ring-4 ring-crimson-50">
+                        JŠ
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-1">Jakub Švikruha</h3>
+                    <span class="text-xs font-semibold text-crimson-600 bg-crimson-50 px-3 py-1 rounded-full border border-crimson-100 mb-3">Zakladateľ DK UK</span>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Spoluzakladateľ participujúci na organizácii pravidelných stretnutí a univerzitných podujatí.
+                    </p>
+                </div>
+
+                <!-- Founder 4 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center card-hover flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-crimson-700 to-crimson-500 text-white flex items-center justify-center font-bold text-2xl shadow-md mb-4 border-2 border-white ring-4 ring-crimson-50">
+                        VH
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-1">Veronika Habalová</h3>
+                    <span class="text-xs font-semibold text-crimson-600 bg-crimson-50 px-3 py-1 rounded-full border border-crimson-100 mb-3">Zakladateľka DK UK</span>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Spoluzakladateľka budujúca otvorenú komunitu a prepájajúca študentov naprieč fakultami.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: CONTACT & LOCATION                -->
+    <!-- ========================================== -->
+    <section id="kontakt" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Left: Contact Details -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-crimson-600 font-bold text-sm tracking-wider uppercase bg-crimson-50 px-3.5 py-1 rounded-full border border-crimson-100">Spoj sa s nami</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-3">Kontakty & Sociálne siete</h2>
+                        <p class="text-slate-600 text-base mt-3">
+                            Máš otázky ohľadom stretnutí, zapísania predmetu alebo turnajov? Napíš nám e-mail alebo správa na sociálnych sieťach.
+                        </p>
+                    </div>
+
+                    <!-- Email Box -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex flex-col gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-crimson-600 text-white flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Oficiálny E-mail</span>
+                                <a href="mailto:debatyuk@flaw.uniba.sk" class="block font-bold text-slate-900 hover:text-crimson-600 text-base sm:text-lg truncate transition-colors">
+                                    debatyuk@flaw.uniba.sk
+                                </a>
+                            </div>
+                        </div>
+                        <button onclick="copyEmail()" class="w-full bg-white hover:bg-slate-100 text-slate-700 font-semibold py-2.5 px-4 rounded-xl border border-slate-300 text-sm flex items-center justify-center gap-2 transition-colors">
+                            <i id="copy-icon" class="fa-regular fa-copy"></i>
+                            <span id="copy-text">Skopírovať e-mail do schránky</span>
+                        </button>
+                    </div>
+
+                    <!-- Social Links Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/debaty_uk" target="_blank" rel="noopener noreferrer" class="bg-slate-50 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 p-5 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fa-brands fa-instagram text-2xl text-rose-600"></i>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-rose-600"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400">Instagram</span>
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-rose-600">@debaty_uk</h4>
+                            </div>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/debaty.uk" target="_blank" rel="noopener noreferrer" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 p-5 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fa-brands fa-facebook text-2xl text-blue-600"></i>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-blue-600"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400">Facebook</span>
+                                <h4 class="font-bold text-slate-900 text-base group-hover:text-blue-600">Debatný klub UK</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Location Info & Map Card -->
+                <div class="lg:col-span-7 bg-slate-900 text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-crimson-600/30 text-crimson-300 px-3 py-1 rounded-full text-xs font-bold border border-crimson-500/30 mb-6">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Miesto konania debat</span>
+                        </div>
+
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold mb-4">Miestnosť Iuridicum</h3>
+                        <p class="text-slate-300 text-base mb-6 leading-relaxed">
+                            Právnická fakulta Univerzity Komenského v Bratislave<br/>
+                            <span class="text-amber-300">Šafárikovo námestie 6, 818 05 Bratislava</span>
+                        </p>
+
+                        <!-- Directions Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8 border-y border-slate-800 py-6">
+                            <div class="flex gap-3 items-start">
+                                <div class="w-8 h-8 rounded-lg bg-slate-800 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-bus"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs font-bold text-slate-400 uppercase">Doprava (MHD)</h5>
+                                    <p class="text-sm font-medium text-slate-200">Zastávka <strong>Šafárikovo nám.</strong></p>
+                                    <p class="text-xs text-slate-400">Električky 1, 3, 4 • Autobus 29, 50, 70</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 items-start">
+                                <div class="w-8 h-8 rounded-lg bg-slate-800 text-amber-300 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-door-open"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs font-bold text-slate-400 uppercase">Navigácia v budove</h5>
+                                    <p class="text-sm font-medium text-slate-200">Miestnosť Iuridicum</p>
+                                    <p class="text-xs text-slate-400">V hlavnej budove UK na Šafárikovom námestí</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Link to Google Maps -->
+                    <div class="pt-4">
+                        <a href="https://maps.google.com/?q=Právnická+fakulta+Univerzity+Komenského+Šafárikovo+námestie+6+Bratislava" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 w-full bg-crimson-600 hover:bg-crimson-700 text-white font-bold py-3.5 rounded-2xl transition-colors shadow-lg">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Otvoriť v Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-900">
+                
+                <!-- Logo & Text -->
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full overflow-hidden shrink-0">
+                        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="100" fill="#A31C24"/>
+                            <circle cx="100" cy="100" r="87" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                            <circle cx="100" cy="100" r="79" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                            <text x="100" y="85" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle" dominant-baseline="central" letter-spacing="2">DK</text>
+                            <text x="100" y="137" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle" dominant-baseline="central" letter-spacing="2">UK</text>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-base">Debatný klub Univerzity Komenského</h4>
+                        <p class="text-xs text-slate-500">Právnická fakulta UK • Šafárikovo nám. 6, Bratislava</p>
+                    </div>
+                </div>
+
+                <!-- Footer Social Icons -->
+                <div class="flex items-center gap-4">
+                    <a href="https://www.instagram.com/debaty_uk" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-900 hover:bg-crimson-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="https://www.facebook.com/debaty.uk" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-900 hover:bg-crimson-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+                        <i class="fa-brands fa-facebook-f text-base"></i>
+                    </a>
+                    <a href="mailto:debatyuk@flaw.uniba.sk" class="w-10 h-10 rounded-full bg-slate-900 hover:bg-crimson-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-envelope text-base"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Debatný klub Univerzity Komenského (DK UK). Všetky práva vyhradené.</p>
+                <p class="flex items-center gap-1">
+                    <span>Vytvorené pre akademickú debatu & rozvoj kritického myslenia</span>
                 </p>
             </div>
         </div>
     </footer>
 
+    <!-- Toast Notification for Copying Email -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl border border-slate-700 flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span class="text-sm font-medium">E-mail debatyuk@flaw.uniba.sk bol skopírovaný!</span>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC                           -->
+    <!-- ========================================== -->
+    <script>
+        // Mobile Navigation Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Copy Email Functionality
+        function copyEmail() {
+            const email = "debatyuk@flaw.uniba.sk";
+            
+            // Clipboard fallback for iframe context
+            const textarea = document.createElement("textarea");
+            textarea.value = email;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+                
+                // UI feedback on button
+                const copyText = document.getElementById('copy-text');
+                const copyIcon = document.getElementById('copy-icon');
+                copyText.innerText = "Skopírované!";
+                copyIcon.className = "fa-solid fa-check text-emerald-600";
+                
+                setTimeout(() => {
+                    copyText.innerText = "Skopírovať e-mail do schránky";
+                    copyIcon.className = "fa-regular fa-copy";
+                }, 3000);
+
+            } catch (err) {
+                console.error('Neukladá sa do schránky', err);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Show Toast Function
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Lightbox Functionality
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = src;
+            lightboxCaption.innerText = caption;
+
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('flex');
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on click outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Escape key to close lightbox
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
